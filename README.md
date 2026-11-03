@@ -55,16 +55,19 @@ These numbers come from the cleaned table (1,351 products).
 
 ## Project Structure
 
-```
-amazon-sales-sql-project/
-├── README.md
-├── sql/
-│   ├── 01_data_cleaning.sql    # load, profile, clean, deduplicate
-│   └── 02_analysis.sql         # 10 analysis queries
-├── data/
-│   └── amazon_cleaned.csv      # final cleaned table (1,351 rows)
-└── screenshots/                # query results and dashboard
-```
+## Screenshots
+
+### Average discount by category
+![Average discount by category](q2_avg_discount_by_category.png.png)
+
+### Discount band vs rating
+![Discount band vs rating](q9_discount_vs_rating.png.png)
+
+### Top-rated products (1,000+ ratings)
+![Top rated products](q6_top_rated_products.png.png)
+
+### Final quality check
+![Final quality check](final_quality_check.png.png)
 
 ## How to Run
 
