@@ -58,16 +58,16 @@ These numbers come from the cleaned table (1,351 products).
 ## Screenshots
 
 ### Average discount by category
-![Average discount by category](q2_avg_discount_by_category.png.png)
+![Average discount by category](q2_avg_discount_by_category.png)
 
 ### Discount band vs rating
-![Discount band vs rating](q9_discount_vs_rating.png.png)
+![Discount band vs rating](q9_discount_vs_rating.png)
 
 ### Top-rated products (1,000+ ratings)
-![Top rated products](q6_top_rated_products.png.png)
+![Top rated products](q6_top_rated_products.png)
 
 ### Final quality check
-![Final quality check](final_quality_check.png.png)
+![Final quality check](final_quality_check.png)
 
 ## How to Run
 
