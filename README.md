@@ -54,12 +54,26 @@ These numbers come from the cleaned table (1,351 products).
 - The overall average rating is 4.09.
 
 ## Project Structure
-
 ## Screenshots
 
+### Q2: Average discount by category
+Computers&Accessories gives the biggest average discount (53.2%), while OfficeProducts is far lower (12.4%).
+
 ![Average discount by category](screenshots/q2_avg_discount_by_category.png)
+
+### Q9: Discount band vs rating
+Higher discounts go with slightly lower average ratings.
+
 ![Discount band vs rating](screenshots/q9_discount_vs_rating.png)
+
+### Q6: Top-rated products (1,000+ ratings)
+The highest-rated products among those with at least 1,000 ratings.
+
 ![Top rated products](screenshots/q6_top_rated_products.png)
+
+### Final quality check
+1,351 unique products, 1 missing rating, 2 missing rating counts.
+
 ![Final quality check](screenshots/final_quality_check.png)
 ## How to Run
 
