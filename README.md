@@ -10,11 +10,12 @@ Turn a raw CSV (1,465 rows, 16 columns, everything stored as text) into a clean,
 
 - MySQL 8.0 and MySQL Workbench
 - SQL: `REGEXP_REPLACE`, `REPLACE`, `CAST`, `NULLIF`, `SUBSTRING_INDEX`, `GROUP BY`, `CASE`
-- Excel (for charts and a dashboard)
+- Excel (dashboard with `COUNTIFS`, `AVERAGEIFS`, a dropdown filter and a slicer)
 
 ## Dataset
 
 Amazon Sales dataset from Kaggle: https://www.kaggle.com/datasets/karkavelrajaj/amazon-sales-dataset
+
 The raw file is not included in this repository. Download it from the link above.
 
 ## Problems Found in the Raw Data
@@ -53,28 +54,58 @@ These numbers come from the cleaned table (1,351 products).
 - **Prices are skewed towards the low end:** 501 products cost up to ₹500, while only 203 cost more than ₹5,000.
 - The overall average rating is 4.09.
 
-## Project Structure
-## Screenshots
+## SQL Results
 
-### Q2: Average discount by category
-Computers&Accessories gives the biggest average discount (53.2%), while OfficeProducts is far lower (12.4%).
+**Average discount by category**
 
 ![Average discount by category](screenshots/q2_avg_discount_by_category.png)
 
-### Q9: Discount band vs rating
-Higher discounts go with slightly lower average ratings.
-
-![Discount band vs rating](screenshots/q9_discount_vs_rating.png)
-
-### Q6: Top-rated products (1,000+ ratings)
-The highest-rated products among those with at least 1,000 ratings.
+**Top rated products**
 
 ![Top rated products](screenshots/q6_top_rated_products.png)
 
-### Final quality check
-1,351 unique products, 1 missing rating, 2 missing rating counts.
+**Discount band vs average rating**
+
+![Discount vs rating](screenshots/q9_discount_vs_rating.png)
+
+**Final quality check** (1,351 unique products, 1 missing rating, 2 missing rating counts)
 
 ![Final quality check](screenshots/final_quality_check.png)
+
+## Dashboard
+
+I built an Excel dashboard from the cleaned data: [`dashboard/Amazon_Product_Performance_Dashboard.xlsx`](dashboard/Amazon_Product_Performance_Dashboard.xlsx).
+
+![Dashboard with all categories](screenshots/dashboard_all.png)
+
+A category dropdown filters the KPI cards, the price range chart and the rating chart.
+
+![Dashboard filtered by category](screenshots/dashboard_filtered.png)
+
+**How it works**
+
+- The `Data` sheet holds the cleaned table (1,351 products).
+- The `Analysis` sheet uses `COUNTIFS` and `AVERAGEIFS` formulas, so every number updates from the data.
+- The `Dashboard` sheet has five KPI cards and four charts.
+- Categories with fewer than 30 products are left out of the category chart, because their averages are not reliable.
+
+**Limits:** this is catalog data, not completed orders. It has no dates, units sold or revenue, so it cannot show sales trends. The link between higher discounts and slightly lower ratings is an association, not proof that discounts cause lower ratings.
+
+## Project Structure
+
+```
+amazon-sales-sql-project/
+├── README.md
+├── sql/
+│   ├── 01_data_cleaning.sql    # load, profile, clean, deduplicate
+│   └── 02_analysis.sql         # 10 analysis queries
+├── data/
+│   └── amazon_cleaned.csv      # final cleaned table (1,351 rows)
+├── dashboard/
+│   └── Amazon_Product_Performance_Dashboard.xlsx
+└── screenshots/                # query results and dashboard
+```
+
 ## How to Run
 
 1. Download the raw `amazon.csv` from the Kaggle link above.
@@ -90,9 +121,11 @@ The highest-rated products among those with at least 1,000 ratings.
 - `NULLIF` turns bad values into `NULL` instead of breaking a `CAST`.
 - Profiling every column for values that don't fit the expected pattern is a core part of cleaning.
 - Duplicate rows are not always identical, so the right deduplication method depends on the data.
+- `COUNTIFS` and `AVERAGEIFS` let me build summary tables that update from the data, instead of pasting numbers.
+- One dropdown cell can filter a whole dashboard.
 
 ## Next Steps
 
-- Build an Excel dashboard (pivot tables and charts) from `data/amazon_cleaned.csv`.
+- Excel dashboard: done (see Dashboard above).
 - Split the review columns into one row per review and analyse review text.
 - Add a Power BI or Tableau dashboard.
